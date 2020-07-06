@@ -2,11 +2,13 @@ package org.blankjee.cloudfast.common.config;
 
 import cn.hutool.core.util.IdUtil;
 import org.activiti.engine.impl.cfg.IdGenerator;
+import org.springframework.stereotype.Component;
 
 /**
  * @Author blankjee
  * @Date 2020/7/6 15:10
  */
+@Component
 public class ActivitiIdGenerate implements IdGenerator {
     @Override
     public String getNextId() {
