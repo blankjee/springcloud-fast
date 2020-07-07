@@ -8,6 +8,7 @@ import org.blankjee.cloudfast.entity.SystemMenu;
 import org.blankjee.cloudfast.mapper.SysDictMapper;
 import org.blankjee.cloudfast.mapper.SystemMenuMapper;
 import org.blankjee.cloudfast.service.ISystemService;
+import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.ArrayList;
@@ -19,6 +20,7 @@ import java.util.Map;
  * @Author blankjee
  * @Date 2020/7/6 20:04
  */
+@Service
 public class SystemServiceImpl implements ISystemService {
     @Resource
     private SystemMenuMapper systemMenuMapper;
