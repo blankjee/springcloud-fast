@@ -1,9 +1,12 @@
 package org.blankjee.cloudfast.common.entity;
 
+import lombok.Data;
+
 /**
  * @Author blankjee
  * @Date 2020/7/6 16:19
  */
+@Data
 public class PageBean {
     // 当前页码
     private long page;
