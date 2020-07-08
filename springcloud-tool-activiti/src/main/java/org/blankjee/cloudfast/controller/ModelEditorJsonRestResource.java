@@ -1,4 +1,4 @@
-package org.blankjee.cloudfast.common.config;
+package org.blankjee.cloudfast.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
