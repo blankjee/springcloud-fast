@@ -26,14 +26,12 @@ public class IndexController {
     @RequestMapping("queryMenu")
     public Map<String, Object> queryMenu() {
         Map<String, Object> map = systemService.queryMenuList();
-        log.info("------------------------" + String.valueOf(map));
         return map;
     }
 
     @RequestMapping("querySysDict")
     public ResponseResult<List<SysDict>> querySysDict() {
         List<SysDict> sysDicts = systemService.querySysDictInfo(SysConstant.SYSTEM_CODE);
-        log.info("------------------------" + ResponseUtil.makeOkRsp(sysDicts));
         return ResponseUtil.makeOkRsp(sysDicts);
     }
 }
