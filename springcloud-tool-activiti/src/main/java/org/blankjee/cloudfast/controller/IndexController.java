@@ -1,5 +1,6 @@
 package org.blankjee.cloudfast.controller;
 
+import lombok.extern.slf4j.Slf4j;
 import org.blankjee.cloudfast.common.entity.ResponseResult;
 import org.blankjee.cloudfast.common.entity.ResponseUtil;
 import org.blankjee.cloudfast.common.entity.SysConstant;
@@ -17,6 +18,7 @@ import java.util.Map;
  * @Date 2020/7/6 19:57
  */
 @RestController
+@Slf4j
 public class IndexController {
     @Resource
     private ISystemService systemService;
@@ -24,12 +26,14 @@ public class IndexController {
     @RequestMapping("queryMenu")
     public Map<String, Object> queryMenu() {
         Map<String, Object> map = systemService.queryMenuList();
+        log.info("------------------------" + String.valueOf(map));
         return map;
     }
 
     @RequestMapping("querySysDict")
     public ResponseResult<List<SysDict>> querySysDict() {
         List<SysDict> sysDicts = systemService.querySysDictInfo(SysConstant.SYSTEM_CODE);
+        log.info("------------------------" + ResponseUtil.makeOkRsp(sysDicts));
         return ResponseUtil.makeOkRsp(sysDicts);
     }
 }

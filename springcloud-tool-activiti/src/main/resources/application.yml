@@ -8,3 +8,8 @@ spring:
   thymeleaf:
     mode: LEGACYHTML5 #声明为非严格的HTML5格式
     cache: false
+    servlet:
+      content-type: text/html
+  mvc:
+    view:
+      suffix: .html

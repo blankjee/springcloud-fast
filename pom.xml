@@ -8,7 +8,7 @@
     <artifactId>springcloud-fast</artifactId>
     <version>1.0-SNAPSHOT</version>
     <modules>
-        <module>springcloud-tool-acitivi</module>
+        <module>springcloud-tool-activiti</module>
     </modules>
     <packaging>pom</packaging>
 
