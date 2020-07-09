@@ -9,6 +9,8 @@ import org.activiti.engine.RepositoryService;
 import org.activiti.engine.repository.Model;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
@@ -27,6 +29,8 @@ public class ModelEditorJsonRestResource implements ModelDataJsonConstants {
     @Resource
     private ObjectMapper objectMapper;
 
+    // 返回内容类型为 JSON 格式
+    @RequestMapping(value = "/model/{modelId}/json", method = RequestMethod.GET, produces = "application/json")
     public ObjectNode getEditorJson(@PathVariable String modelId) {
         ObjectNode modelNode = null;
         Model model = repositoryService.getModel(modelId);

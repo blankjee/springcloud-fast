@@ -29,7 +29,7 @@ public class PageController {
     @GetMapping("/{page}")
     public String toPage(@PathVariable String page) {
         if (StrUtil.equals("favicon.ico", page)) {
-            return "favicon.ico";
+            return "favicon";
         }
         return page;
     }
