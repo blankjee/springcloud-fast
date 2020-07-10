@@ -13,6 +13,10 @@ public class Graph {
      */
     private Node initial;
 
+    public Node getInitial() {
+        return initial;
+    }
+
     public void setInitial(Node initial) {
         this.initial = initial;
     }
