@@ -9,10 +9,7 @@ import org.blankjee.cloudfast.service.ISystemService;
 import org.blankjee.cloudfast.service.IVacationOrderService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -104,6 +101,18 @@ public class VacationOrderController {
     @ResponseBody
     public ResponseResult<String> delVacation(@RequestParam("vacationId") Long vacationId) {
         vacationOrderService.delVacation(vacationId);
+        return ResponseUtil.makeOkRsp();
+    }
+
+    /**
+     * 发起请假条
+     * @param vacationOrder
+     * @return
+     */
+    @PostMapping("saveOrder")
+    @ResponseBody
+    public ResponseResult<String> saveOrder(@RequestBody VacationOrder vacationOrder) {
+        vacationOrderService.insertVacationOrder(vacationOrder);
         return ResponseUtil.makeOkRsp();
     }
 }
