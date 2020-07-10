@@ -41,10 +41,8 @@ public class VacationOrderController {
      */
     @RequestMapping("queryList")
     @ResponseBody
-    public ResponseTableResult<List<VacationOrder>> queryList(PageBean pageBean) {
-
-        Page<VacationOrder> vacationOrderPage = vacationOrderService.queryList(pageBean);
-        // Page<VacationOrderVo> vacationOrderPage = vacationOrderService.queryVacationOrder(pageBean);
+    public ResponseTableResult<List<VacationOrderVo>> queryList(PageBean pageBean) {
+        Page<VacationOrderVo> vacationOrderPage = vacationOrderService.queryVacationOrder(pageBean);
         return ResponseUtil.makeTableRsp(0, vacationOrderPage.getTotal(), vacationOrderPage.getRecords());
     }
 

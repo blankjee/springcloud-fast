@@ -27,8 +27,6 @@ public interface IVacationOrderService {
      */
     Page<VacationOrderVo> queryVacationOrder(PageBean pageBean);
 
-    Page<VacationOrder> queryList(PageBean pageBean);
-
     /**
      * 根据审批单号查询审批信息
      * @param vacationId

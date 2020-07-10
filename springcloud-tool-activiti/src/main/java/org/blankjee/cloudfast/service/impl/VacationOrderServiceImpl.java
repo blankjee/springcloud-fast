@@ -39,17 +39,9 @@ public class VacationOrderServiceImpl implements IVacationOrderService {
 
     @Override
     public Page<VacationOrderVo> queryVacationOrder(PageBean pageBean) {
-//        Page<VacationOrderVo> page = new Page<>(pageBean.getPage(), pageBean.getLimit());
-//        User currentUser = userService.getCurrentUser();
-//        Page<VacationOrderVo> vacationOrderPage = vacationOrderMapper.queryVacationOrder(page, currentUser.getUserId());
-//        return vacationOrderPage;
-        return null;
-    }
-
-    @Override
-    public Page<VacationOrder> queryList(PageBean pageBean) {
         Page<VacationOrder> page = new Page<>(pageBean.getPage(), pageBean.getLimit());
-        Page<VacationOrder> vacationOrderPage = vacationOrderMapper.selectPage(page, null);
+        User currentUser = userService.getCurrentUser();
+        Page<VacationOrderVo> vacationOrderPage = vacationOrderMapper.queryVacationOrder(page, currentUser.getUserId());
         return vacationOrderPage;
     }
 

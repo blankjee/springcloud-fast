@@ -12,6 +12,12 @@ import org.blankjee.cloudfast.entity.VacationOrderVo;
  */
 public interface VacationOrderMapper extends BaseMapper<VacationOrder> {
 
-    // Page<VacationOrderVo> queryVacationOrder(Page<VacationOrderVo> page, @Param("userId") String userId);
+    /**
+     * 此处的方法是关联了Mapper.xml文件的，路径：src/main/resources/mapper/VacationOrderMapper.xml
+     * @param page
+     * @param userId
+     * @return
+     */
+    Page<VacationOrderVo> queryVacationOrder(Page<VacationOrder> page, @Param("userId") String userId);
 
 }
