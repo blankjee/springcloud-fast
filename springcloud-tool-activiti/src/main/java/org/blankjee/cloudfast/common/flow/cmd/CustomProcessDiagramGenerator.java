@@ -1,5 +1,7 @@
 package org.blankjee.cloudfast.common.flow.cmd;
 
+import org.blankjee.cloudfast.common.flow.model.Edge;
+import org.blankjee.cloudfast.common.flow.model.Graph;
 import org.activiti.bpmn.constants.BpmnXMLConstants;
 import org.activiti.bpmn.model.*;
 import org.activiti.engine.history.HistoricActivityInstance;
@@ -12,12 +14,14 @@ import org.activiti.engine.impl.context.Context;
 import org.activiti.engine.impl.persistence.entity.ProcessDefinitionEntity;
 import org.activiti.engine.impl.pvm.process.ActivityImpl;
 import org.apache.commons.io.FilenameUtils;
-import org.blankjee.cloudfast.common.flow.model.Edge;
-import org.blankjee.cloudfast.common.flow.model.Graph;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
-import java.awt.geom.*;
+import java.awt.geom.AffineTransform;
+import java.awt.geom.Ellipse2D.Double;
+import java.awt.geom.Line2D;
+import java.awt.geom.Path2D;
+import java.awt.geom.RoundRectangle2D;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -26,11 +30,14 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
+
 /**
+ * @Desc 流程图绘制工具
  * @Author blankjee
- * @Date 2020/7/10 16:22
+ * @Date 2020/7/10 11:08
  */
 public class CustomProcessDiagramGenerator {
+
     public static final int OFFSET_SUBPROCESS = 5;
     public static final int OFFSET_TASK = 10;
     private static List<String> taskType = new ArrayList<String>();
@@ -288,7 +295,7 @@ public class CustomProcessDiagramGenerator {
      * 绘制任务
      */
     protected static void drawEvent(int x, int y, int width, int height, Graphics2D graphics) {
-        Ellipse2D.Double circle = new Ellipse2D.Double(x, y, width, height);
+        Double circle = new Double(x, y, width, height);
         graphics.draw(circle);
     }
 

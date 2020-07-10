@@ -17,7 +17,7 @@ public class Edge extends GraphElement {
     /**
      * 终点节点
      */
-    private Node desc;
+    private Node dest;
 
     /**
      * 循环

@@ -1,5 +1,6 @@
 package org.blankjee.cloudfast.controller;
 
+import cn.hutool.core.util.StrUtil;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import lombok.extern.slf4j.Slf4j;
@@ -9,7 +10,9 @@ import org.activiti.bpmn.model.Process;
 import org.activiti.editor.constants.ModelDataJsonConstants;
 import org.activiti.editor.language.json.converter.BpmnJsonConverter;
 import org.activiti.engine.ActivitiException;
+import org.activiti.engine.ManagementService;
 import org.activiti.engine.RepositoryService;
+import org.activiti.engine.impl.interceptor.Command;
 import org.activiti.engine.repository.Deployment;
 import org.activiti.engine.repository.Model;
 import org.apache.batik.transcoder.TranscoderInput;
@@ -20,6 +23,7 @@ import org.blankjee.cloudfast.common.entity.ResponseResult;
 import org.blankjee.cloudfast.common.entity.ResponseTableResult;
 import org.blankjee.cloudfast.common.entity.ResponseUtil;
 import org.blankjee.cloudfast.common.entity.ResultCode;
+import org.blankjee.cloudfast.common.flow.cmd.HistoryProcessInstanceDiagramCmd;
 import org.blankjee.cloudfast.entity.FlowDef;
 import org.blankjee.cloudfast.service.IFlowInfoService;
 import org.springframework.http.HttpStatus;
@@ -29,10 +33,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
 import java.util.List;
 
 /**
@@ -52,6 +53,9 @@ public class ActivitiModelController {
 
     @Resource
     private IFlowInfoService flowInfoService;
+
+    @Resource
+    private ManagementService managementService;
 
     @RequestMapping("/createModel")
     public void createModel(HttpServletRequest request, HttpServletResponse response) {
@@ -169,5 +173,44 @@ public class ActivitiModelController {
             return ResponseUtil.makeOkRsp("部署成功");
         }
         return ResponseUtil.makeErrRsp(ResultCode.NOT_FOUND.code,"系统异常,流程ID不存在");
+    }
+
+
+    /**
+     * 查询流程图
+     * @param request
+     * @param response
+     * @throws IOException
+     */
+    @RequestMapping("queryFlowImg")
+    public void queryFlowImg(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        String flowId = request.getParameter("flowId");
+        InputStream inputStream = null;
+        if (StrUtil.isBlank(flowId) || StrUtil.equals("null", flowId)) {
+            inputStream = this.getClass().getClassLoader().getResourceAsStream("static/images/no_flowInfo.png");
+        } else {
+            Command<InputStream> cmd = new HistoryProcessInstanceDiagramCmd(flowId);
+            inputStream = managementService.executeCommand(cmd);
+        }
+        BufferedOutputStream bout = new BufferedOutputStream(response.getOutputStream());
+        try {
+            if (inputStream == null) {
+                // 展示默认图片
+                inputStream = this.getClass().getResourceAsStream("/images/no_flowInfo.png");
+            }
+            byte b[] = new byte[1024];
+            int len = inputStream.read(b);
+            while (len > 0) {
+                bout.write(b, 0, len);
+                len = inputStream.read(b);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            bout.close();
+            if (inputStream != null) {
+                inputStream.close();
+            }
+        }
     }
 }
