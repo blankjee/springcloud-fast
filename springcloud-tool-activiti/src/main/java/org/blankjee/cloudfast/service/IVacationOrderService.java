@@ -2,8 +2,11 @@ package org.blankjee.cloudfast.service;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.blankjee.cloudfast.common.entity.PageBean;
+import org.blankjee.cloudfast.entity.User;
 import org.blankjee.cloudfast.entity.VacationOrder;
 import org.blankjee.cloudfast.entity.VacationOrderVo;
+
+import java.util.List;
 
 /**
  * @Author blankjee
@@ -23,6 +26,8 @@ public interface IVacationOrderService {
      * @return
      */
     Page<VacationOrderVo> queryVacationOrder(PageBean pageBean);
+
+    Page<VacationOrder> queryList(PageBean pageBean);
 
     /**
      * 根据审批单号查询审批信息
