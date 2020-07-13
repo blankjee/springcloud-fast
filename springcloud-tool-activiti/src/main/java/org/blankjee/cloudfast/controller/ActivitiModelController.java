@@ -213,4 +213,20 @@ public class ActivitiModelController {
             }
         }
     }
+
+    /**
+     * 删除流程
+     * @param request
+     * @return
+     */
+    @RequestMapping("delModel")
+    @ResponseBody
+    public ResponseResult<String> delModel(HttpServletRequest request) {
+        String modelId = request.getParameter("modelId");
+        if (StrUtil.isBlank(modelId)) {
+            return ResponseUtil.makeErrRsp(ResultCode.FAIL.code, "流程ID不存在！");
+        }
+        repositoryService.deleteModel(modelId);
+        return ResponseUtil.makeOkRsp("删除流程成功！");
+    }
 }
