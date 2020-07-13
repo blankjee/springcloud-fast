@@ -8,19 +8,20 @@ layui.use(['form','table'],function () {
         url: '/task/queryMyTask',
         toolbar: '#toolbarDemo',
         cols: [[
-            {field: 'vacationId', title: '请假单'},
+            {field: 'vacationId', title: '请假单', fixed: 'left'},
             {field: 'userId', title: '请假人'},
             {field: 'startTime', title: '请假开始时间'},
             {field: 'endTime', title: '请假结束时间'},
             {field: 'vacationContext', title: '请假原因'},
             {field: 'taskName', title: '任务名称'},
             {field: 'createTime',templet:'<div>{{ layui.util.toDateString(d.createTime, "yyyy-MM-dd HH:mm:ss") }}</div>', title: '任务创建时间'},
-            {title: '操作', minWidth: 150, toolbar: '#currentTableBar', align: "center"}
+            {fixed: 'right', title:'操作', toolbar: '#currentTableBar', minWidth:180}
         ]],
         limits: [10, 15, 20, 25, 50, 100],
         limit: 10,
         page: true,
-        skin: 'line'
+        skin: 'line',
+        scroll: true
     });
 
 

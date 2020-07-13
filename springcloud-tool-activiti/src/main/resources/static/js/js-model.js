@@ -8,13 +8,13 @@ layui.use(['form','table'],function () {
         url: '/model/queryModelList',
         toolbar: '#toolbarDemo',
         cols: [[
-            {field: 'id', title: '流程ID', sort: true},
+            {field: 'id', title: '流程ID', sort: true, fixed: 'left'},
             {field: 'deploymentId', title: '流程部署ID', sort: true},
             {field: 'name', title: '流程名称'},
-            {field: 'revision', title: '版本', sort: true},
+            {field: 'revision', minWidth: 50, title: '版本', sort: true},
             {field: 'createTime', title: '创建时间',templet:'<div>{{ layui.util.toDateString(d.createTime, "yyyy-MM-dd HH:mm:ss") }}</div>'},
             {field: 'lastUpdateTime',title: '更新时间',templet:'<div>{{ layui.util.toDateString(d.lastUpdateTime, "yyyy-MM-dd HH:mm:ss") }}</div>'},
-            {title: '操作', minWidth: 150, toolbar: '#currentTableBar', align: "center"}
+            {title: '操作', minWidth: 220, toolbar: '#currentTableBar', align: "center"}
         ]],
         limits: [10, 15, 20, 25, 50, 100],
         limit: 10,
