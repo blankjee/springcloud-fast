@@ -50,49 +50,18 @@ layui.use(['form','table'],function () {
     table.on('tool(currentTableFilter)', function (obj) {
         var data = obj.data;
         if (obj.event === 'edit') {
-            openWin('/modeler.html?modelId=' + data.id,'编辑流程',null);
-        } else if (obj.event === 'copy') {  // 监听复制操作
-            openWin("/model/copyModel?modelId="+ data.id,'复制流程',null);
-        }else if (obj.event === 'deploy') {  // 监听部署操作
-            layer.confirm('确定部署么', function (index) {
-                var modelId = data.id;
-                $.ajax({
-                    beforeSend: function() {
-                        layer.load(2);
-                    },
-                    type: 'GET',
-                    url: '/model/deployModel',
-                    data: {
-                        modelId: modelId
-                    },
-                    dataType: 'json',
-                    success: function (res) {
-                        if(res.code == 200) {
-                            layer.msg(res.msg, { icon: 1 ,time: 1000});
-                            table.reload('currentTableId');
-                        }else {
-                            layer.msg(res.msg, {icon: 5, time: 2000});
-                        }
-                    },
-                    complete: function() {
-                        layer.closeAll("loading");
-                    },
-                    error: function() {
-                        layer.msg('系统繁忙请稍后重试', {icon: 5, time: 2000});
-                    }
-                });
-            });
+            openWin('/modeler.html?modelId=' + data.ruleId,'编辑流程',null);
         } else if (obj.event === 'delete') {
             layer.confirm('确定删除行么', function (index) {
-                var modelId = data.id;
+                var ruleId = data.ruleId;
                 $.ajax({
                     beforeSend: function() {
                         layer.load(2);
                     },
                     type: 'GET',
-                    url: '/model/delModel',
+                    url: '/flow/delFlowRule',
                     data: {
-                        modelId: modelId
+                        ruleId: ruleId
                     },
                     dataType: 'json',
                     success: function (res) {

@@ -90,4 +90,10 @@ public interface IFlowInfoService {
      * @return
      */
     FlowMain queryFlowById(Long flowInstId);
+
+    /**
+     * 根据ID删除流程规则
+     * @param flowInstId
+     */
+    void delFlowRuleBy(Long flowInstId);
 }

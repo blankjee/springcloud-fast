@@ -191,4 +191,10 @@ public class FlowInfoServiceImpl implements IFlowInfoService {
         queryWrapper.eq("FLOW_INST_ID", flowInstId);
         return flowMainMapper.selectOne(queryWrapper);
     }
+
+    @Override
+    @Transactional
+    public void delFlowRuleBy(Long flowInstId) {
+        flowRuleMapper.deleteById(flowInstId);
+    }
 }

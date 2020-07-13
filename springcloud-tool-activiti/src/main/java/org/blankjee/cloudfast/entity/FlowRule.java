@@ -1,5 +1,7 @@
 package org.blankjee.cloudfast.entity;
 
+import com.alibaba.fastjson.annotation.JSONField;
+import com.alibaba.fastjson.serializer.ToStringSerializer;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
@@ -26,12 +28,14 @@ public class FlowRule implements Serializable {
      * 规则ID
      */
     @TableId("RULE_ID")
+    @JSONField(serializeUsing = ToStringSerializer.class)
     private Long ruleId;
 
     /**
      * 业务流程定义ID
      */
     @TableField("DEF_ID")
+    @JSONField(serializeUsing = ToStringSerializer.class)
     private Long defId;
 
     /**

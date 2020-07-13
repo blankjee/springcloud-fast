@@ -57,6 +57,11 @@ public class ActivitiModelController {
     @Resource
     private ManagementService managementService;
 
+    /**
+     * 创建流程
+     * @param request
+     * @param response
+     */
     @RequestMapping("/createModel")
     public void createModel(HttpServletRequest request, HttpServletResponse response) {
         try {
